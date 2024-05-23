@@ -126,24 +126,27 @@ public class GameView extends SurfaceView implements OnTouchListener {
                 if (i % 2 != 0) {
                     DISTANCE = WIDTH / 2;
                 }
-                Point dot = getDot(j, i);
-                switch (dot.getStatus()) {
-                    case STATUS_IN:
-                        paint.setColor(0XFFEEEEEE);
-                        break;
-                    case STATUS_ON:
-                        paint.setColor(0XFFFFAA00);
-                        break;
-                    case STATUS_OFF:
-                        paint.setColor(0X74000000);
-                        break;
-                    default:
-                        break;
+                if(getDot(j,i) != null){
+                    Point dot = getDot(j, i);
+                    switch (dot.getStatus()) {
+                        case STATUS_IN:
+                            paint.setColor(0XFFEEEEEE);
+                            break;
+                        case STATUS_ON:
+                            paint.setColor(0XFFFFAA00);
+                            break;
+                        case STATUS_OFF:
+                            paint.setColor(0X74000000);
+                            break;
+                        default:
+                            break;
+                    }
+                    canvas.drawOval(new RectF(dot.getX() * WIDTH + DISTANCE
+                            + length, dot.getY() * WIDTH + OFFSET, (dot.getX() + 1)
+                            * WIDTH + DISTANCE + length, (dot.getY() + 1) * WIDTH
+                            + OFFSET), paint);
                 }
-                canvas.drawOval(new RectF(dot.getX() * WIDTH + DISTANCE
-                        + length, dot.getY() * WIDTH + OFFSET, (dot.getX() + 1)
-                        * WIDTH + DISTANCE + length, (dot.getY() + 1) * WIDTH
-                        + OFFSET), paint);
+
             }
         }
         int left;
